@@ -14,7 +14,7 @@ var (
 	login = "anonymous"
 	password = "anonymous"
 	directory = "LEGI"
-	prefix = "legi_"
+	prefix = "LEGI/LEGI_"
 	suffix = ".tar.gz"
 )
 
@@ -54,11 +54,10 @@ func main() {
 }
 
 func Copy(client ftp.ServerConn, entry string) {
-	response, err := client.Retr(directory + "/" + entry)
+	response, err := client.Retr(entry)
 	if err != nil {
 		panic(err)
 	}
-
 	defer response.Close()			
 
 	fo, err := os.Create(entry)
